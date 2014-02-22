@@ -1,0 +1,7 @@
+#!/bin/sh -xe
+
+# Install packages.
+bundle --quiet --binstubs
+
+bin/rake "spec"
+bin/rake "spec:quality"

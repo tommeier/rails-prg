@@ -1,11 +1,5 @@
 ENV["RAILS_ENV"] ||= 'test'
-require "simplecov"
-
-SimpleCov.start do
-  add_filter "/spec/"
-  add_filter "/vendor/"
-end
-
+require_relative 'support/use_simplecov'
 require_relative '../lib/rails/prg.rb'
 
 # Load Dummy app
