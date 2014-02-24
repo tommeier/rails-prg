@@ -7,7 +7,8 @@ DUMMY_APP_PATH="spec/dummy"
 
 # Prep dummy app db
 pushd "$DUMMY_APP_PATH"
-  bin/rake db:drop db:setup db:test:load
+  bin/rake db:drop db:setup
+  bin/rake db:test:load
 popd
 
 bin/rake "spec"
