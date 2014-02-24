@@ -2,6 +2,7 @@ ENV["RAILS_ENV"]  ||= 'test'
 ENV["RAILS_ROOT"] ||= File.expand_path("../dummy", __FILE__)
 
 require_relative 'support/use_simplecov'
+require_relative 'support/use_selenium_display' # TODO: When open sourced - use OpenSauce for multibrowser testing
 require_relative '../lib/rails/prg.rb'
 
 # Load Dummy app
@@ -19,6 +20,10 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.order = 'random'
+
+  config.before(:suite) do
+    TestObject.delete_all
+  end
 end
 
 

@@ -5,8 +5,8 @@ feature "Display redirection and display of form content and errors" do
     visit "/test_objects/new"
 
     fill_in "Subject", :with => "testing input"
-    click_button "Create Test Object"
+    click_button "Create Test object"
 
-    expect(page).to have_text("Test Object was successfully created.")
+    expect(page).to have_text("Test object was successfully created.")
   end
 end
