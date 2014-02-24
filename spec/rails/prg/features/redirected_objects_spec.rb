@@ -1,12 +1,12 @@
 require "spec_helper"
 
 feature "Display redirection and display of form content and errors" do
-  # scenario "User creates a new widget" do
-  #   visit "/widgets/new"
+  scenario "User redirects on error", js: true do
+    visit "/test_objects/new"
 
-  #   fill_in "Name", :with => "My Widget"
-  #   click_button "Create Widget"
+    fill_in "subject", :with => "testing input"
+    click_button "Create Test Object"
 
-  #   expect(page).to have_text("Widget was successfully created.")
-  # end
+    expect(page).to have_text("Test Object was successfully created.")
+  end
 end

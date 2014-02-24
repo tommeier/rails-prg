@@ -28,8 +28,15 @@ TODO: Write usage instructions here
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## TODO
 
+## Note how to generate dummy rails app
+
+  * Command for dummy rails app
+  * Scaffolding request objects:
+    * `rails generate scaffold TestObject subject:text:uniq body:text published:boolean`
+
+## TODO
+  * Remove symbolize_keys and set in unit tests `symbolize_names: true` to reflect symbolized params
   * Request specs for:
     * TestObject + TestController
       * 1. With filters

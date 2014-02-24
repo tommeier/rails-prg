@@ -1,0 +1,29 @@
+<%= form_for(@test_object) do |f| %>
+  <% if @test_object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_object.errors.count, "error") %> prohibited this test_object from being saved:</h2>
+
+      <ul>
+      <% @test_object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_area :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :published %><br>
+    <%= f.check_box :published %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

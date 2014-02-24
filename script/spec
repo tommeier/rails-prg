@@ -3,5 +3,12 @@
 # Install packages.
 bundle --quiet --binstubs
 
+DUMMY_APP_PATH="spec/dummy"
+
+# Prep dummy app db
+pushd "$DUMMY_APP_PATH"
+  bin/rake db:drop db:setup db:test:load
+popd
+
 bin/rake "spec"
 bin/rake "spec:quality"

@@ -29,9 +29,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency "actionpack"
   spec.add_dependency "railties"
 
+  spec.add_development_dependency "activerecord"
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "cane"
+  spec.add_development_dependency "capybara"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "selenium-webdriver"
   spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "sqlite3"
 end
