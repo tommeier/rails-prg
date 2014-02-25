@@ -38,5 +38,5 @@ TODO: Write usage instructions here
 
 ## TODO
   * Write up README
-  * DRY up features
   * Add steps to install chromedriver to readme
+  * When open sourced, use sauce labs 'Open Sauce' to check in multiple browsers for result and remove 'selenium_display'
