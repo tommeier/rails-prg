@@ -39,4 +39,6 @@ TODO: Write usage instructions here
 ## TODO
   * Write up README
   * Add steps to install chromedriver to readme
-  * When open sourced, use sauce labs 'Open Sauce' to check in multiple browsers for result and remove 'selenium_display'
+  * When Open sourced:
+    * Add Travis-CI
+    * use sauce labs 'Open Sauce' to check in multiple browsers for result and remove 'selenium_display' (or only enable for manual local run, run script/ci for travis, script/spec for local)
