@@ -193,7 +193,6 @@ describe ExamplePrgsController, type: :controller do
         end
 
         it 'should raise an error' do
-          puts "in spec before expect"
           # Must be curly braces https://github.com/rspec/rspec-expectations/commit/dd5ee3aba1eb33b3dacc56a12964e48a0d2c84f5
           # do...end blocks for raise_error are ignored...
           # Until rspec-expectations 3+ is used

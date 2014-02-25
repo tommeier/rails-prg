@@ -12,6 +12,8 @@ pushd "$DUMMY_APP_PATH"
 popd
 
 rm -rf coverage
+
+# Enable to check spec coverage - only 'elses' should be uncovered
 export CHECK_SPEC_COVERAGE=${CHECK_SPEC_COVERAGE:-false}
 
 COVERAGE_GROUP="unit-tests" bin/rake "spec:unit"
