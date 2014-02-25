@@ -1,4 +1,5 @@
 module Rails
+  # Post-Redirect-Get
   module Prg
     # Allow full POST-REDIRECT-GET pattern, instead of rendering an error, on change of object
     # redirect back and load errors on to object. This prevents issues with a fully

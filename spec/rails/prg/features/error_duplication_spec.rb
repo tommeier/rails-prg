@@ -1,25 +1,25 @@
 require "spec_helper"
 
-feature "Standard Rails render on errors", js: true do
+feature "Standard Rails render on errors" do
+  let(:existing_example) { ErrorDuplicator.create(subject: 'anything', body: 'test body', published: true) }
+
+  scenario "ensure secure environment for accurate test" do
+    # Check that environment tested is actually secure (without selenium)
+    visit new_error_duplicator_path
+    expect(page.response_headers["Cache-Control"]).to include("no-cache, no-store")
+  end
+
   scenario "triggering browser cache error in secure environment with browser history disabled", js: true do
     ErrorDuplicator.count.should eq(0)
 
-    # Create initial object
-    visit new_error_duplicator_path
-
-    fill_in "Subject", :with => "testing input"
-    click_button "Create Error duplicator"
-    expect(page).to have_text("Error duplicator was successfully created.")
-    expect(page.current_path).to eq(error_duplicator_path(ErrorDuplicator.first))
-
     # Create new with an error
     visit new_error_duplicator_path
-    fill_in "Subject", :with => "testing input"
+    fill_in "Subject", :with => existing_example.subject
     click_button "Create Error duplicator"
     expect(page).to have_text("Subject has already been taken")
 
     # Should have set the error on the object
-    expect(page).to have_field('Subject', with: "testing input")
+    expect(page).to have_field('Subject', with: existing_example.subject)
 
     # Should *not* have redirected back
     expect(page.current_path).to eq(error_duplicators_path)
@@ -52,17 +52,21 @@ feature "Standard Rails render on errors", js: true do
     end
   end
 
-  scenario "working normally in non-secure environment with browser history", js: true do
-    original = ErrorDuplicator.create(subject: 'existing test input', body: 'test body', published: true)
+  scenario "ensure non-secure environment for accurate test" do
+    # Check that environment tested is not secure (without selenium)
+    visit edit_error_duplicator_path(existing_example)
+    expect(page.response_headers["Cache-Control"]).not_to include("no-cache, no-store")
+  end
 
+  scenario "working normally in non-secure environment with browser history", js: true do
     # Edit page has no secure headers set
-    visit edit_error_duplicator_path(original)
+    visit edit_error_duplicator_path(existing_example)
 
     fill_in "Subject", :with => ""
     click_button "Update Error duplicator"
     expect(page).to have_text("Subject can't be blank")
     expect(page).to have_field('Subject', with: "")
-    expect(page.current_path).to eq(error_duplicator_path(original))
+    expect(page.current_path).to eq(error_duplicator_path(existing_example))
 
     # Edit successfully
     fill_in "Subject", :with => "updated test input"
@@ -70,7 +74,7 @@ feature "Standard Rails render on errors", js: true do
     expect(page).to have_text("Error duplicator was successfully updated.")
 
     # Should *not* have redirected back
-    expect(page.current_path).to eq(error_duplicator_path(original))
+    expect(page.current_path).to eq(error_duplicator_path(existing_example))
 
     # On click of back button
     page.execute_script("window.history.back();")
@@ -79,13 +83,13 @@ feature "Standard Rails render on errors", js: true do
     case $selenium_display.browser.to_sym
     when :firefox
       # Backs all the way back to edit page without errors (pre-post)
-      expect(page.current_path).to eq(edit_error_duplicator_path(original))
+      expect(page.current_path).to eq(edit_error_duplicator_path(existing_example))
       page.should have_content("Editing error_duplicator")
       expect(page).to_not have_text("Subject can't be blank")
       expect(page).to have_field('Subject', with: "") #Posted value
     when :chrome
       # Backs all the way back to show page with errors (post -> rendered error)
-      expect(page.current_path).to eq(error_duplicator_path(original))
+      expect(page.current_path).to eq(error_duplicator_path(existing_example))
       page.should have_content("Editing error_duplicator")
       expect(page).to have_text("Subject can't be blank")
       expect(page).to have_field('Subject', with: "updated test input") #updated value
