@@ -5,14 +5,14 @@ feature "Standard Rails", js: true do
     ErrorDuplicator.count.should eq(0)
 
     # Create initial object
-    visit new_error_duplicators_path
+    visit new_error_duplicator_path
     fill_in "Subject", :with => "testing input"
     click_button "Create Error duplicator"
     expect(page).to have_text("Error duplicator was successfully created.")
     expect(page.current_path).to eq(error_duplicator_path(ErrorDuplicator.first))
 
     # Create new with an error
-    visit new_error_duplicators_path
+    visit new_error_duplicator_path
     fill_in "Subject", :with => "testing input"
     click_button "Create Error duplicator"
     expect(page).to have_text("Subject has already been taken")
@@ -38,10 +38,12 @@ feature "Standard Rails", js: true do
     when :firefox
       expect(page.find("h1#errorTitleText")).to have_text("Document Expired")
       expect(page.find("p#errorShortDescText")).to have_text("This document is no longer available.")
+      expect(page.find("div#errorLongDesc")).to have_text("The requested document is not available in Firefox's cache")
       expect(page.current_path).to eq(error_duplicators_path)
     when :chrome
       within "div#main-frame-error" do
-        expect(page.find("span.heading")).to have_text("Confirm Form Resubmission")
+        expect(page.find("h1")).to have_text("Confirm Form Resubmission")
+        click_button "More" #triggers chrome to load error code
         expect(page.find("div.error-code")).to have_text("Error code: ERR_CACHE_MISS")
       end
     else

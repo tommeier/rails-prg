@@ -4,7 +4,7 @@ feature "Display redirection and display of form content and errors" do
   scenario "User redirects on error", js: true do
     puts TestObject.inspect
     puts TestObject.class.inspect
-    TestObject.count.should eq(0)
+    TestObject.all.count.should eq(0)
 
     # Create initial object
     visit "/test_objects/new"
