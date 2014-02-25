@@ -57,18 +57,18 @@ describe ExamplePrgsController, type: :controller do
       # This duplicates the behaviour for unit testing 'after' a redirect
       def fake_flash_for_test(allowed_params)
         if params[:set_redirected_flash]
-          content_for_flash = JSON.parse(params[:set_redirected_flash])
+          content_for_flash = JSON.parse(params[:set_redirected_flash], symbolize_names: true)
           flash[:redirected_objects] = if params.delete(:raw_hash)
             # Checking if a developer has passed raw hashes instead
             # of full parameters hash with permitted attributes
             content_for_flash
           else
-            object_params = content_for_flash['@object']['params']
+            object_params = content_for_flash[:@object][:params]
             if object_params
               # Ensure params are set as proper parameters object like they
               # should be in controller before
               controller_params = ActionController::Parameters.new(object_params).permit(*allowed_params)
-              content_for_flash['@object']['params'] = controller_params
+              content_for_flash[:@object][:params] = controller_params
             end
             content_for_flash
           end

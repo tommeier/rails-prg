@@ -37,6 +37,6 @@ TODO: Write usage instructions here
     * `rails generate scaffold ErrorDuplicator subject:text:uniq body:text published:boolean`
 
 ## TODO
+  * Write up README
   * DRY up features
   * Add steps to install chromedriver to readme
-  * Remove symbolize_keys and set in unit tests `symbolize_names: true` to reflect symbolized params

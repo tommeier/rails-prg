@@ -22,7 +22,6 @@ module Rails
           flash[:redirected_objects].each do |instance_reference, attributes|
             object_instance = instance_variable_get(instance_reference)
             # Apply errors to instance
-            attributes.symbolize_keys!
             set_errors_to_redirected_instance(object_instance, attributes[:errors])
             # Apply any params (ie: changed form fields to be corrected)
             set_params_to_redirected_instance(object_instance, attributes[:params])
