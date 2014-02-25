@@ -11,21 +11,21 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rails/prg'
 require 'rspec/rails'
 require 'capybara'
+require 'database_cleaner'
 
 Rails.backtrace_cleaner.remove_silencers!
 
+DatabaseCleaner.clean_with :truncation
+DatabaseCleaner.strategy = :transaction
+
 RSpec.configure do |config|
   config.mock_with :rspec
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
-  config.before(:suite) do
-    TestObject.delete_all
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
   end
 end
-
-
-
-

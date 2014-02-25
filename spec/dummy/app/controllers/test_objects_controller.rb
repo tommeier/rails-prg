@@ -1,3 +1,4 @@
+# Full examples of Post-Redirect-Get on errors not exposing error in secure environment
 class TestObjectsController < ApplicationController
   before_action :set_test_object, only: [:show, :edit, :update, :destroy]
 

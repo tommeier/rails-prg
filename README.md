@@ -34,6 +34,7 @@ TODO: Write usage instructions here
   * Command for dummy rails app
   * Scaffolding request objects:
     * `rails generate scaffold TestObject subject:text:uniq body:text published:boolean`
+    * `rails generate scaffold ErrorDuplicator subject:text:uniq body:text published:boolean`
 
 ## TODO
   * Remove symbolize_keys and set in unit tests `symbolize_names: true` to reflect symbolized params

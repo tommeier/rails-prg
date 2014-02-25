@@ -1,0 +1,31 @@
+<h1>Listing error_duplicators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @error_duplicators.each do |error_duplicator| %>
+      <tr>
+        <td><%= error_duplicator.subject %></td>
+        <td><%= error_duplicator.body %></td>
+        <td><%= error_duplicator.published %></td>
+        <td><%= link_to 'Show', error_duplicator %></td>
+        <td><%= link_to 'Edit', edit_error_duplicator_path(error_duplicator) %></td>
+        <td><%= link_to 'Destroy', error_duplicator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Error duplicator', new_error_duplicator_path %>

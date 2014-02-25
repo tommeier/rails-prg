@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @error_duplicator.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @error_duplicator.body %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%= @error_duplicator.published %>
+</p>
+
+<%= link_to 'Edit', edit_error_duplicator_path(@error_duplicator) %> |
+<%= link_to 'Back', error_duplicators_path %>

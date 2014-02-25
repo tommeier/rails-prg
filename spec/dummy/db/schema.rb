@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224214719) do
+ActiveRecord::Schema.define(version: 20140225004609) do
+
+  create_table "error_duplicators", force: true do |t|
+    t.text     "subject"
+    t.text     "body"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "error_duplicators", ["subject"], name: "index_error_duplicators_on_subject", unique: true
 
   create_table "test_objects", force: true do |t|
     t.text     "subject"
