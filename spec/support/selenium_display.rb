@@ -3,7 +3,7 @@ require 'selenium-webdriver'
 Device = Struct.new(:width, :height)
 
 class SeleniumDisplay
-  attr_accessor :remote_host, :browser, :device, :device_name,
+  attr_accessor :browser, :device, :device_name,
                 :resizable, :browser_capability,
                 :selenium_options
 
@@ -20,17 +20,6 @@ class SeleniumDisplay
     self.device = define_device(device_name)
 
     print_debug_info if ENV['SELENIUM_DEBUG']
-  end
-
-  def address
-    @address ||= begin
-      url = self.remote_host || "http://#{local_ip}:#{port}"
-      url =~ /\Ahttps?:\/\//i ? url : "http://#{url}"
-    end
-  end
-
-  def remote?
-    !!self.remote_host
   end
 
   private
@@ -81,8 +70,6 @@ class SeleniumDisplay
 
   def print_debug_info
     STDERR.puts " >> Loading Selenium display"
-    STDERR.puts "   ->> HTTP address: #{address}"
-    STDERR.puts "   ->> port        : #{port}"
     STDERR.puts "   ->> browser     : #{browser}"
     STDERR.puts "   ->> device type : #{device_name}"
     STDERR.puts "   ->> device      : #{device}"

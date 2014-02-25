@@ -11,6 +11,10 @@ pushd "$DUMMY_APP_PATH"
   bin/rake db:test:load
 popd
 
-bin/rake "spec"
-# TODO: Browser specific features and break up unit
+rm -rf coverage
+export CHECK_SPEC_COVERAGE=${CHECK_SPEC_COVERAGE:-false}
+
+COVERAGE_GROUP="unit-tests" bin/rake "spec:unit"
+COVERAGE_GROUP="firefox-features" BROWSER=firefox bin/rake "spec:features"
+COVERAGE_GROUP="chrome-features" BROWSER=chrome bin/rake "spec:features"
 bin/rake "spec:quality"

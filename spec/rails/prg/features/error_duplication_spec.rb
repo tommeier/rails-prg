@@ -1,7 +1,7 @@
 require "spec_helper"
 
-feature "Standard Rails", js: true do
-  scenario "render on errors triggering browser cache error in secure environment", js: true do
+feature "Standard Rails render on errors", js: true do
+  scenario "triggering browser cache error in secure environment with browser history disabled", js: true do
     ErrorDuplicator.count.should eq(0)
 
     # Create initial object
@@ -52,7 +52,7 @@ feature "Standard Rails", js: true do
     end
   end
 
-  scenario "render on errors working normally in non-secure environment with browser history", js: true do
+  scenario "working normally in non-secure environment with browser history", js: true do
     original = ErrorDuplicator.create(subject: 'existing test input', body: 'test body', published: true)
 
     # Edit page has no secure headers set
