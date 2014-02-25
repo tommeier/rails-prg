@@ -95,7 +95,9 @@ describe ExamplePrgsController, type: :controller do
               exception_received.to_s.should eq(
                 '[Rails::Prg] Error - Must use permitted strong parameters. Unsafe: unknown_field, another_unknown'
               )
-            } # Must use curly braces https://github.com/rspec/rspec-expectations/commit/dd5ee3aba1eb33b3dacc56a12964e48a0d2c84f5
+            }
+            # Must use curly braces https://github.com/rspec/rspec-expectations/commit/dd5ee3aba1eb33b3dacc56a12964e48a0d2c84f5
+            # Until rspec-expectations 3+ is used
           end
         end
       end
@@ -194,6 +196,7 @@ describe ExamplePrgsController, type: :controller do
           puts "in spec before expect"
           # Must be curly braces https://github.com/rspec/rspec-expectations/commit/dd5ee3aba1eb33b3dacc56a12964e48a0d2c84f5
           # do...end blocks for raise_error are ignored...
+          # Until rspec-expectations 3+ is used
           expect { get :new, params }.to raise_error { |exception_received|
             exception_received.should be_a(RuntimeError)
             exception_received.to_s.should eq('[Rails::Prg] Error - Must pass strong parameters.')
