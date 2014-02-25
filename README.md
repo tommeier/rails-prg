@@ -40,10 +40,3 @@ TODO: Write usage instructions here
   * DRY up features
   * Add steps to install chromedriver to readme
   * Remove symbolize_keys and set in unit tests `symbolize_names: true` to reflect symbolized params
-  * Request specs for:
-    * TestObject + TestController
-      * 1. With filters
-      * 2. With direct calls
-    * ErrorDuplicator + ErrorDuplicatorController
-      * StandardRailsController
-      * Dupe in Firefox + Chrome

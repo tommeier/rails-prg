@@ -1,10 +1,7 @@
 require "spec_helper"
-require "action_controller"
-require_relative "../../dummy/app/controllers/test_controller"
+#require "action_controller"
 
-#class TestController < ActionController::Base; end
-
-describe TestController, type: :controller do
+describe ExamplePrgsController, type: :controller do
 
   describe "post redirect get with error conditions" do
     # Example Post-Redirect-Get on error conditions
@@ -18,7 +15,7 @@ describe TestController, type: :controller do
       end
     end
 
-    controller(TestController) do
+    controller(ExamplePrgsController) do
       def new
         safe_params = [:some_field, :set_redirected_flash]
         fake_flash_for_test(safe_params)
@@ -93,12 +90,12 @@ describe TestController, type: :controller do
 
         context "with submission" do
           it "should raise error with descriptive error message for faster debugging" do
-            expect { post :create, params }.to raise_error do |exception_received|
+            expect { post :create, params }.to raise_error { |exception_received|
               exception_received.should be_a(RuntimeError)
               exception_received.to_s.should eq(
                 '[Rails::Prg] Error - Must use permitted strong parameters. Unsafe: unknown_field, another_unknown'
               )
-            end
+            } # Must use curly braces https://github.com/rspec/rspec-expectations/commit/dd5ee3aba1eb33b3dacc56a12964e48a0d2c84f5
           end
         end
       end
@@ -194,10 +191,13 @@ describe TestController, type: :controller do
         end
 
         it 'should raise an error' do
-          expect { get :new, params }.to raise_error do |exception_received|
+          puts "in spec before expect"
+          # Must be curly braces https://github.com/rspec/rspec-expectations/commit/dd5ee3aba1eb33b3dacc56a12964e48a0d2c84f5
+          # do...end blocks for raise_error are ignored...
+          expect { get :new, params }.to raise_error { |exception_received|
             exception_received.should be_a(RuntimeError)
-            exception_received.to_s.should eq('[Rails::Prg] Error - Must pass safe parameters.')
-          end
+            exception_received.to_s.should eq('[Rails::Prg] Error - Must pass strong parameters.')
+          }
         end
 
         it 'should always clear the flash' do
