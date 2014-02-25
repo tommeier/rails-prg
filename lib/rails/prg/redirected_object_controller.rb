@@ -1,22 +1,23 @@
 module Rails
   module Prg
-    # Handle passing objects on redirect
+    # Allow full POST-REDIRECT-GET pattern, instead of rendering an error, on change of object
+    # redirect back and load errors on to object. This prevents issues with a fully
+    # secure browser environment (no-cache, no-store), when the user clicks back
+    # Note: The filter *must* be loaded after the object instance is loaded for dynamic
+    # lookup without having to find it again.
+    # eg:
+    # class ObjectController
+    #   before_filter :find_object,               only: [:edit,:update]
+    #   before_filter :load_redirected_objects!,  only: [:edit]
+    #   def update
+    #     if errors;
+    #       set_redirected_object!('@object', @object, clean_params)
+    #       redirect_to edit_object_path(@object)
     module RedirectedObjectController
       extend ActiveSupport::Concern
 
-      # Allow full POST-REDIRECT-GET pattern, instead of rendering an error, on change of object
-      # redirect back and load errors on to object. This prevents issues with a fully
-      # secure browser environment (no-cache, no-store), when the user clicks back
-      # Note: The filter *must* be loaded after the object instance is loaded for dynamic
-      # lookup without having to find it again.
-      # eg:
-      # class ObjectController
-      #   before_filter :find_object,               only: [:edit,:update]
-      #   before_filter :load_redirected_objects!,  only: [:edit]
-      #   def update
-      #     if errors;
-      #       set_redirected_object!('@object', @object, clean_params)
-      #       redirect_to edit_object_path(@object)
+      # Load any redirected objects present in flash
+      # Loaded on any view where an error redirect has occured
       def load_redirected_objects!
         if flash[:redirected_objects]
           flash[:redirected_objects].each do |instance_reference, attributes|
