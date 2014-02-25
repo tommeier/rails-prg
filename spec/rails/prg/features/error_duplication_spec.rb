@@ -6,6 +6,7 @@ feature "Standard Rails", js: true do
 
     # Create initial object
     visit new_error_duplicator_path
+
     fill_in "Subject", :with => "testing input"
     click_button "Create Error duplicator"
     expect(page).to have_text("Error duplicator was successfully created.")
@@ -54,7 +55,7 @@ feature "Standard Rails", js: true do
   scenario "render on errors working normally in non-secure environment with browser history", js: true do
     original = ErrorDuplicator.create(subject: 'existing test input', body: 'test body', published: true)
 
-    # Edit
+    # Edit page has no secure headers set
     visit edit_error_duplicator_path(original)
 
     fill_in "Subject", :with => ""
