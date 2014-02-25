@@ -33,10 +33,12 @@ TODO: Write usage instructions here
 
   * Command for dummy rails app
   * Scaffolding request objects:
-    * `rails generate scaffold TestObject subject:text:uniq body:text published:boolean`
+    * `rails generate scaffold ExamplePrg subject:text:uniq body:text published:boolean`
     * `rails generate scaffold ErrorDuplicator subject:text:uniq body:text published:boolean`
 
 ## TODO
+  * DRY up features
+  * Add steps to install chromedriver to readme
   * Remove symbolize_keys and set in unit tests `symbolize_names: true` to reflect symbolized params
   * Request specs for:
     * TestObject + TestController

@@ -1,0 +1,31 @@
+<h1>Listing example_prgs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @example_prgs.each do |example_prg| %>
+      <tr>
+        <td><%= example_prg.subject %></td>
+        <td><%= example_prg.body %></td>
+        <td><%= example_prg.published %></td>
+        <td><%= link_to 'Show', example_prg %></td>
+        <td><%= link_to 'Edit', edit_example_prg_path(example_prg) %></td>
+        <td><%= link_to 'Destroy', example_prg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Example prg', new_example_prg_path %>

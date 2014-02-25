@@ -13,4 +13,5 @@ end
 SimpleCov.formatter = SimpleCov::Formatter::QualityFormatter
 SimpleCov.start do
   add_filter "/vendor/"
+  add_filter "/spec/"
 end

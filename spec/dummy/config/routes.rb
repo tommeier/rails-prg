@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :test_objects
+  resources :example_prgs
   resources :error_duplicators
 end

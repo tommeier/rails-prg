@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @example_prg.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @example_prg.body %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%= @example_prg.published %>
+</p>
+
+<%= link_to 'Edit', edit_example_prg_path(@example_prg) %> |
+<%= link_to 'Back', example_prgs_path %>
