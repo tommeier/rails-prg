@@ -7,9 +7,8 @@ DUMMY_APP_PATH="spec/dummy"
 
 # Prep dummy app db
 pushd "$DUMMY_APP_PATH"
-  bundle --quiet --binstubs
-  bin/rake db:drop db:setup
-  bin/rake db:test:load
+  rake db:drop db:setup
+  rake db:test:load
 popd
 
 rm -rf coverage
