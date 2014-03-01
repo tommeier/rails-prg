@@ -8,8 +8,6 @@ if defined? RSpec
         cane.canefile = ".cane"
         cane.add_threshold 'coverage/covered_percent', :>=, 100
       end
-
-      task :default => :quality
     rescue LoadError
       warn "cane not available, quality task not provided."
     end
