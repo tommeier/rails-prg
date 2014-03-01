@@ -9,15 +9,31 @@ describe ExamplePrgsController, type: :controller do
     class TestObject
       include ActiveModel::Validations
       attr_accessor :some_field
+      attr_reader :protected_field, :private_field
 
       def initialize(passed_attributes = {})
         self.some_field = passed_attributes[:some_field] if passed_attributes
+      end
+
+      protected
+
+      def protected_field=(value)
+        @protected_field = value #Shouldn't allow this
+      end
+
+      private
+
+      def private_field=(value)
+        @private_field = value #Shouldn't allow this
       end
     end
 
     controller(ExamplePrgsController) do
       def new
-        safe_params = [:some_field, :set_redirected_flash]
+        safe_params = [
+          :some_field, :set_redirected_flash,
+          :protected_field, :private_field
+        ]
         fake_flash_for_test(safe_params)
 
         @object = TestObject.new(params.permit(*safe_params))
@@ -210,6 +226,42 @@ describe ExamplePrgsController, type: :controller do
         it "should set errors on to the object" do
           expect { get :new, params }.to raise_error
           controller.instance_variable_get(:@object).errors.should be_an_instance_of(ActiveModel::Errors)
+        end
+      end
+
+      context "when attempting to assign illegal fields" do
+        let(:params)        { { set_redirected_flash: redirected_flash.to_json } }
+        let(:redirected_flash) do
+          {
+            '@object' => {
+              errors: {},
+              params: object_params
+            }
+          }
+        end
+
+        context "assigning on to object" do
+          context "protected fields" do
+            let(:object_params) { { protected_field: 'protected value' } }
+
+            it "should raise an error on assignment" do
+              expect {  get :new, params }.to raise_error { |exception_received|
+                exception_received.should be_a(NoMethodError)
+                exception_received.to_s.should include("protected method `protected_field=' called for")
+              }
+            end
+          end
+
+          context "private fields" do
+            let(:object_params) { { private_field: 'private value' } }
+
+            it "should raise an error on assignment" do
+              expect {  get :new, params }.to raise_error { |exception_received|
+                exception_received.should be_a(NoMethodError)
+                exception_received.to_s.should include("private method `private_field=' called for")
+              }
+            end
+          end
         end
       end
     end

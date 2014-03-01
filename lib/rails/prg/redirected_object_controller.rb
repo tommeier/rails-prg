@@ -76,7 +76,7 @@ module Rails
         ensure_redirected_params_are_safe!(instance_params)
 
         instance_params.each do |attribute, value|
-          instance.send("#{attribute}=", value)
+          instance.public_send("#{attribute}=", value)
         end
       end
     end
