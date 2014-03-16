@@ -8,8 +8,7 @@ rvm:
   - ree
 
 before_install:
-  - lsb_release -a
-  - sudo apt-get -qq update
+  - uname -a
 
 script:
   - ./script/spec
