@@ -1,5 +1,7 @@
 # Rails::Prg (post-redirect-get)
 
+[![Build Status](https://travis-ci.org/tommeier/rails-prg.png)](https://travis-ci.org/tommeier/rails-prg)
+
 Secure applications disable browser history and internal cache. Unfortunately, this causes problems with most browsers when following the standard Rails pattern for displaying errors.
 
 We never really see an issue as Rails developers because we usually allow browser-history and internal store. This gem is ***only*** required when `no-cache, no-store` is applied in your headers for a secure application.
