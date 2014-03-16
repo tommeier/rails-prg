@@ -9,6 +9,7 @@ rvm:
 
 before_install:
   - lsb_release -a
+  - sudo apt-get -qq update
 
 script:
   - ./script/spec
