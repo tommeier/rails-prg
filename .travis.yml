@@ -6,4 +6,5 @@ rvm:
   - ruby-head
   - jruby-head
   - ree
-script: ./script/spec
+script:
+  - ./script/spec
