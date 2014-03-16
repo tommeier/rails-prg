@@ -61,7 +61,7 @@ def update
 end
 ```
 
-The key for us to enable full Post-Redirect-Get is to pass the errors over the redirect and resetting on to the object on the redirected page. This is simply performed by the flash object (one request only).
+To enable full Post-Redirect-Get for errors, the object has to be reinitialized after the redirect with both the set params and the new errors via the flash object (one request only). For security reasons, this will raise errors unless `permitted` params are passed for the redirect (see [strong parameters](http://api.rubyonrails.org/classes/ActionController/Parameters.html)).
 
 Using `Rails-Prg` and to implement full POST-REDIRECT-GET this action (and any other change action such as `create`) should be changed to the following.
 
