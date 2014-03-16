@@ -15,8 +15,8 @@ before_install:
 
 addons:
   sauce_connect:
-    secure: "JpytZIjbJ/nbq0KFoqX9lwi/j8xU11086EVuaeQLmL4uMi4dHxjRe1ueDFWFIYZPlkMHBK4ZfTNOm3PcyV8xblOHclRLnkyIe1UDFElfRelhttt7p5/U2xSgZJ5Yj4cJSrK9UDuUmfALk2kA2Xh3JqVJFwvvBtNGB0orfkHG6x8="
-    secure: "IY1fD/lMps4lgxg2BhWW6VIOeHyvvlOwBomkI3SFptqiZss9LyaeOjUo9t9VCfB1qcMZTa6b12x4CpCzupypiNfUZkaXJ0upVacVEU+bSAu4xKc6SDObLsXxaOwviN5i75Apo/BdJIVQrLH01T0TBLV3Q1LuABRECtYpfwaDjdc="
+    secure: "UXCAeVTPhC401SL4EPTcqY7i6BFFhPs59/q0YH1JkN4qIP/6EUe40HXAikgupbeJ9sUGKiLFWVeRahw1rIOv2qySUeVJHulJMnlISjhqLNZur7D7qrzVNP/ehjf5dFEefSBR4xlxcdyP/p24/aYeni6E9LQpRRqLXNESJ1D7ANI="
+    secure: "d2Fxpsr8fsNLuLClmqPyTL3vva+aHJFmK34BAQJzLcIvwbqAcOOLWjljvC9/Vb1jvtnAoeTu+9WCSognM5XdFKPLsKAcSKBPuLuisVhUQLoJ30l0pRlR6cqI3jJqCX4ZKvoDmjxNeU2wGh4pl3TtcyD0otV5Kr/Hu32zmGDZMks="
 
 script:
   - ./script/spec

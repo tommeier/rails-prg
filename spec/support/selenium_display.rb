@@ -99,7 +99,7 @@ class SeleniumDisplay
   end
 
   def set_sauce_options!
-    raise_on_missing_sauce_variables!
+    raise_on_missing_sauce_variables! unless running_on_travis?
 
     sauce_config = Sauce::Config.new
     host = sauce_config[:application_host] || "127.0.0.1"
