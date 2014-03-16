@@ -6,5 +6,9 @@ rvm:
   - ruby-head
   - jruby-head
   - ree
+
+before_install:
+  - lsb_release -a
+
 script:
   - ./script/spec
