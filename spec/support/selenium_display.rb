@@ -138,7 +138,7 @@ class SeleniumDisplay
   end
 
   def sauce_job_name
-    [browser, device_name].join(" : ")
+    [ENV['TRAVIS_JOB_NUMBER'], browser, device_name].compact.join(" : ")
   end
 
   def raise_on_missing_sauce_variables!
