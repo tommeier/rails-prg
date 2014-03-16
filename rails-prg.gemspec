@@ -12,11 +12,13 @@ Gem::Specification.new do |spec|
   spec.description   = %q{
     Secure applications must not use the browser history or cache, this causes problems
     with most browsers when following standard Rails pattern for POST -> Error -> Render -> Success -> Redirect.
+
     For full protection from ERR_CACHE_MISS (in Chrome with no-cache, no-store), and equivalents in other browsers,
     Rails should redirect on errors in addition to successful POSTs,
     always following the full POST-REDIRECT-GET pattern.
+
     This way the browser will always have a consistent back-button history to traverse without
-    triggering browser errors unable to display form submission pages.
+    triggering browser errors.
   }
   spec.homepage      = "https://github.com/tommeier/rails-prg"
   spec.license       = "MIT"
