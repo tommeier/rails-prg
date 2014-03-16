@@ -86,7 +86,7 @@ feature "Use full post-redirect-get displaying original params and errors on red
     # Browser specific redirection
     case $selenium_display.browser.to_sym
     when :"Internet Explorer"
-      # IE skips back to edit page without
+      # IE8 is unstable, sometimes skips back to 'show' or to 'edit'
       expect(page.current_path).to eq(example_prg_path(existing_example))
       expect(page).not_to have_text("Subject can't be blank")
     else
