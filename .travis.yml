@@ -9,8 +9,14 @@ rvm:
 
 before_install:
   - uname -a
+  - "export USE_SAUCE=true"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+
+addons:
+  sauce_connect:
+    secure: "JpytZIjbJ/nbq0KFoqX9lwi/j8xU11086EVuaeQLmL4uMi4dHxjRe1ueDFWFIYZPlkMHBK4ZfTNOm3PcyV8xblOHclRLnkyIe1UDFElfRelhttt7p5/U2xSgZJ5Yj4cJSrK9UDuUmfALk2kA2Xh3JqVJFwvvBtNGB0orfkHG6x8="
+    secure: "IY1fD/lMps4lgxg2BhWW6VIOeHyvvlOwBomkI3SFptqiZss9LyaeOjUo9t9VCfB1qcMZTa6b12x4CpCzupypiNfUZkaXJ0upVacVEU+bSAu4xKc6SDObLsXxaOwviN5i75Apo/BdJIVQrLH01T0TBLV3Q1LuABRECtYpfwaDjdc="
 
 script:
   - ./script/spec

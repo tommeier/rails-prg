@@ -10,7 +10,7 @@ class SimpleCov::Formatter::QualityFormatter
   end
 end
 
-SimpleCov.merge_timeout 240 #4 mins
+SimpleCov.merge_timeout 1800 #30 mins
 if suite_name = ENV["COVERAGE_GROUP"]
   SimpleCov.command_name(suite_name)
 end
