@@ -14,7 +14,7 @@ At this point, and the back button is pressed; each browser handles it slightly 
 
 In a secure application, browsers are unable to determine the content from the internal cache and raise an error. Example from Chrome when clicking back button after successful redirect raises an `ERR_CACHE_MISS`:
 
-![screen shot 2014-02-14 at 11 48 49 am](https://f.cloud.github.com/assets/19973/2177122/019bb952-95fa-11e3-9499-dac4643ab272.png)
+![Example of Chrome ERR_CACHE_MISS](https://f.cloud.github.com/assets/19973/2430174/318aa678-acc0-11e3-9bf8-0535d51a2fac.png)
 
 For full protection from ERR_CACHE_MISS, and equivalent in other browsers, the pattern should be altered to follow a full POST-REDIRECT-GET patten.
 
@@ -146,7 +146,7 @@ With POST-REDIRECT-GET pattern this is avoided (as the form submission page alwa
 
 Example of error displayed on Chrome:
 
-< insert here >
+![Example of Chrome ERR_CACHE_MISS Process](https://f.cloud.github.com/assets/19973/2430175/4117352a-acc0-11e3-9deb-ba209fa49097.gif)
 
 ## Contributing
 
