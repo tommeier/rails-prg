@@ -1,14 +1,16 @@
 language: ruby
 rvm:
   - 2.1.0
-  - jruby-19mode
-  - rbx
-  - ruby-head
-  - jruby-head
-  - ree
+
+addons:
+  sauce_connect:
+    username: rails-prg
+    access_key:
+      secure: "gN4mKYJjPHGM8L8xl5hEE0mlQ9u1V8AZJlxCPavg7EBe6324FZe6uvN6upuBTr1KCQ1NGUBbzUwurmVAracHxnm3Ctg4gOXSs69e+bGxx1GKQRDHyMYr9+nKrWPML8HtlR2HwS2njDtUZ/q8WMwBQxP4yUwZ8wjueB0yDGVkxXc="
 
 before_install:
   - uname -a
+  - "export USE_SAUCE=true"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 

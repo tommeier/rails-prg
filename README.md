@@ -1,6 +1,7 @@
 # Rails::Prg (post-redirect-get)
 
 [![Build Status](https://travis-ci.org/tommeier/rails-prg.png)](https://travis-ci.org/tommeier/rails-prg)
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/rails-prg.svg)](https://saucelabs.com/u/rails-prg)
 
 Secure applications disable browser history and internal cache. Unfortunately, this causes problems with most browsers when following the standard Rails pattern for displaying errors.
 

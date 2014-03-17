@@ -19,4 +19,10 @@ export CHECK_SPEC_COVERAGE=${CHECK_SPEC_COVERAGE:-false}
 COVERAGE_GROUP="unit-tests" bin/rake "spec:unit"
 COVERAGE_GROUP="firefox-features" BROWSER=firefox bin/rake "spec:features"
 COVERAGE_GROUP="chrome-features" BROWSER=chrome bin/rake "spec:features"
+
+if [ ! -z "$USE_SAUCE" ]; then
+COVERAGE_GROUP="safari-features" BROWSER=safari bin/rake "spec:features"
+COVERAGE_GROUP="ie8-features" BROWSER=ie8 bin/rake "spec:features"
+fi
+
 bin/rake "spec:quality"

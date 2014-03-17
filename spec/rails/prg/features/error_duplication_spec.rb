@@ -47,8 +47,15 @@ feature "Standard Rails render on errors" do
         click_button "More" #triggers chrome to load error code
         expect(page.find("div.error-code")).to have_text("Error code: ERR_CACHE_MISS")
       end
+    when :safari
+      #Unable to duplicate except visually
+      # safariDriver cannot handle alerts, or be aware of them
+      # Behaviour: Safari shows 'confirm form resubmission' alert box
+    when :"Internet Explorer"
+      # IE 8
+      expect(page.body).to have_text("The local copy of this webpage is out of date, and the website requires that you download it again.")
     else
-      raise "Error - Unhandled browser"
+      raise "Error - Unhandled browser: #{$selenium_display.browser.to_sym}"
     end
   end
 
@@ -87,14 +94,23 @@ feature "Standard Rails render on errors" do
       page.should have_content("Editing error_duplicator")
       expect(page).to_not have_text("Subject can't be blank")
       expect(page).to have_field('Subject', with: "") #Posted value
-    when :chrome
+    when :chrome, :safari
       # Backs all the way back to show page with errors (post -> rendered error)
       expect(page.current_path).to eq(error_duplicator_path(existing_example))
       page.should have_content("Editing error_duplicator")
       expect(page).to have_text("Subject can't be blank")
       expect(page).to have_field('Subject', with: "updated test input") #updated value
+    when :"Internet Explorer"
+      # Occasionally IE8 barfs with this error page in Sauce. Ignore.
+      unless page.current_path == "/repost.htm"
+        # Backs all the way back to edit page without errors but content filled
+        expect(page.current_path).to eq(edit_error_duplicator_path(existing_example))
+        page.should have_content("Editing error_duplicator")
+        expect(page).to_not have_text("Subject can't be blank")
+        expect(page).to have_field('Subject', with: "updated test input") #Posted value
+      end
     else
-      raise "Error - Unhandled browser"
+      raise "Error - Unhandled browser: #{$selenium_display.browser.to_sym}"
     end
   end
 end
