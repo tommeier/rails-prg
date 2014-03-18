@@ -12,4 +12,3 @@ end
 
 Capybara.javascript_driver = :selenium_browser
 Capybara.default_wait_time = 10
-

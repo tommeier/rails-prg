@@ -17,5 +17,6 @@ test/tmp
 test/version_tmp
 tmp
 sauce_connect.log*
+sauce_connect.ready
 spec/dummy/log
 spec/dummy/db/*.sqlite3
