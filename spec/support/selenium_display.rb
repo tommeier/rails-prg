@@ -154,7 +154,7 @@ class SeleniumDisplay
     # Notify sauce labs of build result if any specs were:
     #  * JS related (browser specs)
     RSpec.configure do |config|
-      config.after(:all) do
+      config.after(:suite) do
         examples      = RSpec.world.filtered_examples.values.flatten
         sauce_results = examples.inject({}) do |result, example|
           next unless example.metadata.include?(:js) #only js features
@@ -168,7 +168,7 @@ class SeleniumDisplay
         if sauce_results[:total] > 0
           job_result = sauce_results[:failed].count > 0 ? "failed" : "passed"
           Capybara.using_driver(:selenium_browser) do
-            page.driver.execute_script("sauce:job-result=#{job_result}")
+            Capybara.current_session.driver.execute_script("sauce:job-result=#{job_result}")
           end
         end
       end
