@@ -85,7 +85,7 @@ feature "Standard Rails render on errors" do
 
     # On click of back button
     page.execute_script("window.history.back();")
-
+    raise "Test with fail"
     # Browser specific way of handling 'back' with errors in non-secure environment
     case $selenium_display.browser.to_sym
     when :firefox

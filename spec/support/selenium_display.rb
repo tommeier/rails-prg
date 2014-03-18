@@ -154,16 +154,19 @@ class SeleniumDisplay
     # Notify sauce labs of build result if any specs were:
     #  * JS related (browser specs)
     RSpec.configure do |config|
-      config.after(:suite) do
+      config.prepend_after(:suite) do
         examples      = RSpec.world.filtered_examples.values.flatten
         sauce_results = examples.inject({}) do |result, example|
           STDOUT.puts "Within loop"
           result      ||= { passed: [], failed: [], total: 0 }
-          next unless example.metadata.include?(:js) #only js features
+          STDOUT.puts "***" * 100
+          STDOUT.puts example.inspect
+          STDOUT.puts "***" * 100
+
+          next unless example.metadata[:js] #only js features
 
           result[:total] += 1
-          key = example.exception.nil? ? :passed : :failed
-          result[key] << example
+          result[example.metadata[:execution_result][:status].to_sym] << example
           result
         end
 
