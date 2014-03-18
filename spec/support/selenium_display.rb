@@ -157,8 +157,9 @@ class SeleniumDisplay
       config.after(:suite) do
         examples      = RSpec.world.filtered_examples.values.flatten
         sauce_results = examples.inject({}) do |result, example|
+          result      ||= {passed: [], failed: [], total: 0}
           next unless example.metadata.include?(:js) #only js features
-          result         ||= {passed: [], failed: [], total: 0}
+
           result[:total] += 1
           key = example.exception.nil? ? :passed : :failed
           result[key] << example
