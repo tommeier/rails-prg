@@ -156,7 +156,7 @@ class SeleniumDisplay
     RSpec.configure do |config|
       config.prepend_after(:suite) do
         examples      = RSpec.world.filtered_examples.values.flatten
-        sauce_results = examples.inject({}) do |result, example|
+        examples.inject(sauce_results = {}) do |result, example|
           STDOUT.puts "Within loop"
           result      ||= { passed: [], failed: [], total: 0 }
           STDOUT.puts "***" * 100
@@ -172,7 +172,7 @@ class SeleniumDisplay
 
         STDOUT.puts "Example count : #{examples.count}"
         STDOUT.puts "Sauce Results : #{sauce_results}"
-        if sauce_results[:total] > 0
+        if sauce_results && sauce_results[:total] > 0
           job_result = sauce_results[:failed].count > 0 ? "failed" : "passed"
           Capybara.using_driver(:selenium_browser) do
             STDOUT.puts "NOTIFYING SAUCE OF : #{job_result}"
