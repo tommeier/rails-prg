@@ -135,6 +135,8 @@ class SeleniumDisplay
       desired_capabilities: self.browser_capability,
       http_client: client
     )
+
+    set_build_to_notify_sauce!
   end
 
   def sauce_job_name
@@ -145,6 +147,30 @@ class SeleniumDisplay
     # Required sauce variables
     %w( SAUCE_USERNAME SAUCE_ACCESS_KEY ).each do |env_var|
       raise "Error - set #{env_var} for access to open-sauce for selenium tests" unless ENV[env_var]
+    end
+  end
+
+  def set_build_to_notify_sauce!
+    # Notify sauce labs of build result if any specs were:
+    #  * JS related (browser specs)
+    RSpec.configure do |config|
+      config.prepend_after(:suite) do
+        examples      = RSpec.world.filtered_examples.values.flatten
+        sauce_results = examples.inject({ passed: [], failed: [], total: 0 }) do |result, example|
+          if example.metadata[:js] #only js features
+            result[:total] += 1
+            result[example.metadata[:execution_result][:status].to_sym] << example
+          end
+          result
+        end
+
+        if sauce_results[:total] && sauce_results[:total] > 0
+          job_result = sauce_results[:failed].count > 0 ? "failed" : "passed"
+          Capybara.using_driver(:selenium_browser) do
+            Capybara.current_session.driver.execute_script("sauce:job-result=#{job_result}")
+          end
+        end
+      end
     end
   end
 
