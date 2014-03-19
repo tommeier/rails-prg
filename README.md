@@ -38,15 +38,15 @@ triggering browser errors. This error can also be triggered by:
 
 Add this line to your application's Gemfile:
 
-    gem 'rails-prg'
+    `gem 'rails-prg'`
 
 And then execute:
 
-    $ bundle
+    `$ bundle`
 
 Or install it yourself as:
 
-    $ gem install rails-prg
+    `$ gem install rails-prg`
 
 ## Usage
 
