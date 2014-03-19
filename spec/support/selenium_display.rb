@@ -163,10 +163,10 @@ class SeleniumDisplay
           STDOUT.puts example.inspect
           STDOUT.puts "***" * 100
 
-          next unless example.metadata[:js] #only js features
-
-          result[:total] += 1
-          result[example.metadata[:execution_result][:status].to_sym] << example
+          if example.metadata[:js] #only js features
+            result[:total] += 1
+            result[example.metadata[:execution_result][:status].to_sym] << example
+          end
           result
         end
 
