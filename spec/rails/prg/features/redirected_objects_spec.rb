@@ -33,6 +33,7 @@ feature "Use full post-redirect-get displaying original params and errors on red
 
     # On click of back button
     page.execute_script("window.history.back();")
+    page.find('body') #wait till body element present
 
     # Should go back to a blank 'new' page
     expect(page).to have_text("New example_prg")
