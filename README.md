@@ -181,11 +181,6 @@ To display in Chrome browsers, ensure you have the latest `chromedriver` install
 
 ## Appendix
 
-### TODO
-  * When Open sourced:
-    * Add Travis-CI
-    * use sauce labs 'Open Sauce' to check in multiple browsers for result and remove 'selenium_display' (or only enable for manual local run, run script/ci for travis, script/spec for local)
-
 ### How to to generate dummy rails app for test structure (use when updating rails)
 
   * Command for dummy rails app
