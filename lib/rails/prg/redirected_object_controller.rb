@@ -51,7 +51,6 @@ module Rails
       #  - raise error if not strong parameters or not marked as safe
       def ensure_redirected_params_are_safe!(passed_params)
         unless passed_params.is_a?(ActionController::Parameters) && passed_params.permitted?
-          puts passed_params.inspect
           error_message = if passed_params.is_a?(ActionController::Parameters)
             unsafe_parameters = passed_params.send(:unpermitted_keys, params)
             "[Rails::Prg] Error - Must use permitted strong parameters. Unsafe: #{unsafe_parameters.join(', ')}"
