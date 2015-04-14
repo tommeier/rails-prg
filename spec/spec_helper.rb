@@ -11,6 +11,7 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 
 require 'rails/prg'
 require 'rspec/rails'
+require 'rspec/its'
 require 'capybara'
 require 'database_cleaner'
 
