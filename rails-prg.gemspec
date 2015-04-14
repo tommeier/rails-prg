@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "database_cleaner"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "sauce", "~> 3.1.1"
   spec.add_development_dependency "sauce-connect"
   spec.add_development_dependency "selenium-webdriver"

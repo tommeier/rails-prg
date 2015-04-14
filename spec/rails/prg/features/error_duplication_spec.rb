@@ -44,8 +44,7 @@ feature "Standard Rails render on errors" do
     when :chrome
       within "div#main-frame-error" do
         expect(page.find("h1")).to have_text("Confirm Form Resubmission")
-        click_button "More" #triggers chrome to load error code
-        expect(page.find("div.error-code")).to have_text("Error code: ERR_CACHE_MISS")
+        expect(page.find("div.error-code", visible: false)).to have_text("ERR_CACHE_MISS")
       end
     when :safari
       #Unable to duplicate except visually
